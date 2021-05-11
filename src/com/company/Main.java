@@ -2,16 +2,16 @@ package com.company;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     static ArrayList<String> races = new ArrayList<String>();
     static Station _station01 = new Station(10, 100, "Пилигрим");
+    static Reports _report=new Reports();
 
     public static void main(String[] args) throws ParseException {
         boolean stop=false;
-        while (stop!=true) {
+        while (!stop) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("--------СТАНЦИЯ ПИЛИГРИМ---------");
             System.out.println("Кол-Во Кораблей: "+ _station01._ships.size()+"    Вес: "+_station01.curMass+" тонн /" + _station01.maxMass+" тонн");
@@ -30,10 +30,11 @@ public class Main {
                     _station01.StationShipsInfo();
                     break;
                 case 2:
-                    _station01.SpaceShipExport();
+                    SpaceShip ship=new SpaceShip();
+                    ship.SpaceShipExport(_station01);
                     break;
                 case 3:
-                    _station01.StationPeriodInfo();
+                    _report.StationPeriodInfo();
                     break;
                 case 4:
                     stop=true;
@@ -52,7 +53,7 @@ public class Main {
         int raceID=0;
         float mass=0;
         boolean complete=false;
-        while(complete!=true){
+        while(!complete){
             System.out.print("Укажите имя вашего корабля: ");
             name=scanner00.nextLine();
             System.out.print("Укажите рассу от имени которой ваш корабль будет прибывать на станции(Земляни[0], Турианци[1], Ходакейци[2]): ");
@@ -69,8 +70,8 @@ public class Main {
         }
         SpaceShip ship = new SpaceShip(name, raceID, mass);
         System.out.println("Ваш запрос принят на обработку!");
-        if(_station01.StationManager(ship)==true){
-            _station01.SpaceShipImport(ship);
+        if(_station01.StationManager(ship)){
+            ship.SpaceShipImport(_station01,ship);
         }
     }
 }
