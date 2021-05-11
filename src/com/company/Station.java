@@ -49,27 +49,27 @@ public class Station {
             return isAccept;
         }
         if(curShips>=2){
+            int count0=0;
             int count1=0;
             int count2=0;
-            int count3=0;
             for(int i=0; i<_ships.size(); i++){
                 if(_ships.get(i).raceID==0){
-                    count1+=1;
+                    count0+=1;
                 }else if(_ships.get(i).raceID==1){
-                    count2+=1;
+                    count1+=1;
                 }else{
-                    count3+=1;
+                    count2+=1;
                 }
             }
             if(ship.raceID==0){
-                if(count1 < count2){
+                if(count0 < count1){
                     type=Type.Racial_conflicts;
                     racesIsAccess=true;
                     rp.addReport(type,ship);
                     return isAccept;
                 }
             }else if(ship.raceID==1){
-                if(count2<count3){
+                if(count1<count2){
                     type=Type.Racial_conflicts;
                     racesIsAccess=true;
                     rp.addReport(type,ship);
