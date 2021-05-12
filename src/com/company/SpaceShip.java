@@ -4,18 +4,19 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+enum Races{Earthlings, Turiantsi, Khodakeytsi}
+
 public class SpaceShip {
     public String name;
     public float mass;
-    public int raceID;
     public Date incomingDate;
-    static String[] races = {"Земляни", "Турианци", "Ходакейци"};
+    Races race;
 
     public SpaceShip(){}
 
-    public SpaceShip(String name, int raceID, float mass){
+    public SpaceShip(String name, Races race, float mass){
         this.name=name;
-        this.raceID=raceID;
+        this.race=race;
         this.mass=mass;
         Date date = new Date();
         incomingDate=date;
@@ -42,6 +43,6 @@ public class SpaceShip {
     }
 
     public void Info(){
-        System.out.println("- " + name + " | " + races[raceID] + " | "+ mass + " тонн" + " | "+" Дата прибытия: "+ incomingDate);
+        System.out.println("- " + name + " | " + race + " | "+ mass + " тонн" + " | "+" Дата прибытия: "+ incomingDate);
     }
 }

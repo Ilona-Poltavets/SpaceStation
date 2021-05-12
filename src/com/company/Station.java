@@ -53,22 +53,22 @@ public class Station {
             int count1=0;
             int count2=0;
             for(int i=0; i<_ships.size(); i++){
-                if(_ships.get(i).raceID==0){
+                if(_ships.get(i).race==Races.Earthlings){
                     count0+=1;
-                }else if(_ships.get(i).raceID==1){
+                }else if(_ships.get(i).race==Races.Turiantsi){
                     count1+=1;
                 }else{
                     count2+=1;
                 }
             }
-            if(ship.raceID==0){
+            if(ship.race==Races.Earthlings){
                 if(count0 < count1){
                     type=Type.Racial_conflicts;
                     racesIsAccess=true;
                     rp.addReport(type,ship);
                     return isAccept;
                 }
-            }else if(ship.raceID==1){
+            }else if(ship.race==Races.Turiantsi){
                 if(count1<count2){
                     type=Type.Racial_conflicts;
                     racesIsAccess=true;
