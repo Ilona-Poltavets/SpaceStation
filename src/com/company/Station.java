@@ -1,11 +1,5 @@
 package com.company;
-
-import java.awt.image.AreaAveragingScaleFilter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
 
 public class Station {
     public String name;
