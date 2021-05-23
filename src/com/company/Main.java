@@ -85,7 +85,7 @@ public class Main {
         SpaceShip ship = new SpaceShip(name, race, mass);
         System.out.println("Ваш запрос принят на обработку!");
         if (_station01.StationManager(ship)) {
-            ship.SpaceShipImport(_station01, ship);
+            ship.SpaceShipImport(_station01);
         }
     }
 }

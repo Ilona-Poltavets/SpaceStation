@@ -22,10 +22,10 @@ public class SpaceShip {
         incomingDate=date;
     }
 
-    public void SpaceShipImport(Station station, SpaceShip ship){
-        station._ships.add(ship);
+    public void SpaceShipImport(Station station){
+        station._ships.add(this);
         station.curShips+=1;
-        station.curMass+=ship.mass;
+        station.curMass+=this.mass;
     }
 
     public void SpaceShipExport(Station station){
