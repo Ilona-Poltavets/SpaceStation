@@ -15,56 +15,73 @@ public class Reports {
     public Float shipMass;
     static ArrayList<Reports> _refusedRequestsReports = new ArrayList<Reports>();
 
-    public Reports(){}
-
-    public Reports(Type type,SpaceShip ship){
-        Date date = new Date();
-        reportDate=date;
-        reportName=type;
-        this.shipName=ship.name;
-        this.shipMass=ship.mass;
+    public Reports() {
     }
+
+    public Reports(Type type, SpaceShip ship) {
+        Date date = new Date();
+        reportDate = date;
+        reportName = type;
+        this.shipName = ship.name;
+        this.shipMass = ship.mass;
+    }
+
     public void StationPeriodInfo() throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat();
         Scanner scanner00 = new Scanner(System.in);
         Scanner scanner01 = new Scanner(System.in);
         format.applyPattern("dd.MM.yyyy");
-        boolean dateIsInput=false;
-        while(dateIsInput!=true) {
+        boolean dateIsInput = false;
+        while (dateIsInput != true) {
             System.out.print("Введите дату от которой хотите начать поиск (Формат: День.Месяц.Год): ");
             String frstDate = scanner00.nextLine();
             Date firstDate = format.parse(frstDate);
             System.out.print("Введите дату на которой хотите закончить поиск (Формат: День.Месяц.Год): ");
             String lastDate = scanner01.nextLine();
             Date secondDate = format.parse(lastDate);
-            if(firstDate.compareTo(secondDate)==-1){
+            if (firstDate.compareTo(secondDate) == -1) {
                 System.out.println(_refusedRequestsReports.size());
-                for(int i=0; i<_refusedRequestsReports.size(); i++){
-                    if(_refusedRequestsReports.get(i).reportDate.compareTo(firstDate)==1){
-                        if(_refusedRequestsReports.get(i).reportDate.compareTo(secondDate)==-1){
+                for (int i = 0; i < _refusedRequestsReports.size(); i++) {
+                    if (_refusedRequestsReports.get(i).reportDate.compareTo(firstDate) == 1) {
+                        if (_refusedRequestsReports.get(i).reportDate.compareTo(secondDate) == -1) {
                             _refusedRequestsReports.get(i).Info();
                         }
                     }
                 }
-                dateIsInput=true;
-            }else{
+                dateIsInput = true;
+            } else {
                 System.out.println("Первая дата должна быть раньше второй!");
             }
         }
     }
-    public void addReport(Type type, SpaceShip ship){
-        if(type==Type.Station_overloaded)
+
+    public boolean addReport(Type type, SpaceShip ship) {
+        if (type == Type.Station_overloaded) {
             System.out.println("Количество кораблей на станции достигло максимума!");
-        if(type==Type.Ship_heavy)
+            Reports report = new Reports(type, ship);
+            _refusedRequestsReports.add(report);
+            return true;
+        } else if (type == Type.Ship_heavy) {
             System.out.println("Сумарная масса кораблей находящихся на станции достигла своего предела!");
-        if(type==Type.At_station_no_place)
+            Reports report = new Reports(type, ship);
+            _refusedRequestsReports.add(report);
+            return true;
+        } else if (type == Type.At_station_no_place) {
             System.out.println("Этот корабль слишком тяжелый!");
-        if(type==Type.Racial_conflicts)
+            Reports report = new Reports(type, ship);
+            _refusedRequestsReports.add(report);
+            return true;
+        } else if (type == Type.Racial_conflicts) {
             System.out.println("В доступе отказано из за рассовых разногласий!");
-        Reports report = new Reports(type ,ship);
-        _refusedRequestsReports.add(report);
+            Reports report = new Reports(type, ship);
+            _refusedRequestsReports.add(report);
+            return true;
+        }
+        else return false;
+
     }
-    public void Info(){
-        System.out.println("-Отчет: " + reportDate + "| " +"Причина: " + reportName + "   Корабль: " + shipName+ "  Масса: "+shipMass + " тонн ;");
+
+    public void Info() {
+        System.out.println("-Отчет: " + reportDate + "| " + "Причина: " + reportName + "   Корабль: " + shipName + "  Масса: " + shipMass + " тонн ;");
     }
 }

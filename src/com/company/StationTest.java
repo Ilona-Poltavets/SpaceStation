@@ -4,13 +4,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 public class StationTest {
     private Station station;
     private SpaceShip ss1;
     private SpaceShip ss2;
-    ArrayList<SpaceShip>_ships1 = new ArrayList<SpaceShip>();
     @Before
     public void SetUp() throws Exception {
         station = new Station(10,50,"Saturn");

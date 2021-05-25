@@ -28,18 +28,21 @@ public class Station {
             type=Type.Station_overloaded;
             isFool=true;
             rp.addReport(type,ship);
+            //Reports._refusedRequestsReports.add(rp.addReport(type,ship));
             return isAccept;
         }
         if(curMass>=maxMass){
             type=Type.Ship_heavy;
             massIsLimited=true;
             rp.addReport(type,ship);
+            //Reports._refusedRequestsReports.add(rp.addReport(type,ship));
             return isAccept;
         }
         if(ship.mass>maxMass-curMass){
             type=Type.At_station_no_place;
             massIsLimited=true;
             rp.addReport(type,ship);
+            //Reports._refusedRequestsReports.add(rp.addReport(type,ship));
             return isAccept;
         }
         if(curShips>=2){
@@ -60,6 +63,7 @@ public class Station {
                     type=Type.Racial_conflicts;
                     racesIsAccess=true;
                     rp.addReport(type,ship);
+                    //Reports._refusedRequestsReports.add(rp.addReport(type,ship));
                     return isAccept;
                 }
             }else if(ship.race==Races.Turiantsi){
@@ -67,6 +71,7 @@ public class Station {
                     type=Type.Racial_conflicts;
                     racesIsAccess=true;
                     rp.addReport(type,ship);
+                    //Reports._refusedRequestsReports.add(rp.addReport(type,ship));
                     return isAccept;
                 }
             }
