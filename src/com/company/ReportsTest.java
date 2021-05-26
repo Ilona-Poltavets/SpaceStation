@@ -18,9 +18,6 @@ class ReportsTest {
 
     @Test
     void addReport() {
-        boolean actual1=report1.addReport(Type.Ship_heavy,ss2);
-        assertTrue(actual1);
-        boolean actual2=report1.addReport(Type.Racial_conflicts,ss1);
-        assertTrue(actual2);
+
     }
 }
